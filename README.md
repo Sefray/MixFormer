@@ -13,17 +13,18 @@ The official implementation of the CVPR 2022 paper [**MixFormer: End-to-End Trac
 
 ## News
 
-**[Mar 21, 2022]**
-- MixFormer is accepted to **CVPR2022**.
-- We release Code, models and raw results.
+**[Oct 26, 2022]**
+
+- MixFormerL (solely substituting the CvT backbone with ViT-L backbone without extra tricks) rank  <font color='red'>**1/41 on VOT2022-STb public**</font> dataset. 
+- The <font color='red'>**VOT2022-RGBD and VOT2022-D winners**</font> of MixForRGBD and MixForD, implemented by [Lai Simiao](https://github.com/laisimiao), are constructed upon our MixFormer.
+- The VOT2022-STs winner of MS-AOT employs MixFormer as a part of the tracker.  The VOT2022-STb winner of APMT_MR employs the SPM proposed in MixFormer to select dynamic templates.
 
 **[Mar 29, 2022]**
 - Our paper is selected for an <font color='red'> **oral** </font> presentation.
 
-**[Oct 26, 2022]**
-- MixFormerL (solely substituting the CvT backbone with ViT-L backbone without extra tricks) rank  <font color='red'>**1/41 on VOT2022-STb public**</font> dataset. 
-- The <font color='red'>**VOT2022-RGBD and VOT2022-D winners**</font> of MixForRGBD and MixForD, implemented by [Lai Simiao](https://github.com/laisimiao), are constructed upon our MixFormer.
-- The VOT2022-STs winner of MS-AOT employs MixFormer as a part of the tracker.  The VOT2022-STb winner of APMT_MR employs the SPM proposed in MixFormer to select dynamic templates.
+**[Mar 21, 2022]**
+- MixFormer is accepted to <font color='red'> **CVPR2022** </font>.
+- We release Code, models and raw results.
 
 ## Highlights
 ### :sparkles: New transformer tracking framework
