@@ -20,6 +20,10 @@ The official implementation of the CVPR 2022 paper [**MixFormer: End-to-End Trac
 **[Mar 29, 2022]**
 - Our paper is selected for an <font color='red'> **oral** </font> presentation.
 
+**[Oct 26, 2022]**
+- MixFormerL (solely substituting the CvT backbone with ViT-L backbone without extra tricks) rank  <font color='red'>**1/41 on VOT2022-STb**</font> public dataset. 
+- The <font color='red'>**VOT2022-RGBD and VOT2022-D winners**</font> of MixForRGBD and MixForD, implemented by [Lai Simiao](https://github.com/laisimiao), are constructed upon our MixFormer.
+- The VOT2022-STs winner of MS-AOT employs MixFormer as a part of the tracker.  The VOT2022-STb winner of APMT_MR employs the SPM proposed in MixFormer to select dynamic templates.
 
 ## Highlights
 ### :sparkles: New transformer tracking framework
@@ -46,6 +50,9 @@ ToMP101* (CVPR2022)|-|79.2|-|86.4|
 |TrDiMP (CVPR2021)|-|-|67.1|83.3|
 |Siam R-CNN (CVPR2020)|-|72.2|64.9|85.4|
 |TREG (Arxiv2021)|-|74.1|66.8|83.8|
+
+### :sparkles: Rank 1/41 on VOT2022-STb
+![VOT2022-STb Results](tracking/VOT2022-STb.png)
 
 ## Install the environment
 Use the Anaconda
@@ -143,3 +150,18 @@ Cheng Jiang: mg1933027@smail.nju.edu.cn
 ## Acknowledgments
 * Thanks for [PyTracking](https://github.com/visionml/pytracking) Library and [STARK](https://github.com/researchmm/Stark) Library, which helps us to quickly implement our ideas.
 * We use the implementation of the CvT from the official repo [CvT](https://github.com/leoxiaobin/CvT).  
+
+## Citation
+
+If you think this project is helpful, please feel free to leave a star⭐️ and cite our paper:
+
+```
+@InProceedings{Cui_2022_CVPR,
+    author    = {Cui, Yutao and Jiang, Cheng and Wang, Limin and Wu, Gangshan},
+    title     = {MixFormer: End-to-End Tracking With Iterative Mixed Attention},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2022},
+    pages     = {13608-13618}
+}
+```
