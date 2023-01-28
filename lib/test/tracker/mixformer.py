@@ -11,10 +11,10 @@ from lib.utils.box_ops import clip_box
 
 
 class MixFormer(BaseTracker):
-    def __init__(self, params, dataset_name):
+    def __init__(self, params):
         super(MixFormer, self).__init__(params)
         network = build_mixformer(params.cfg)
-        network.load_state_dict(torch.load(self.params.checkpoint, map_location='cpu')['net'], strict=True)
+        network.load_state_dict(torch.load(self.params.checkpoint, map_location='cpu')['net'], strict=False)
         self.cfg = params.cfg
         self.network = network.cuda()
         self.network.eval()
@@ -32,11 +32,7 @@ class MixFormer(BaseTracker):
         # self.z_dict1 = {}
 
         # Set the update interval
-        DATASET_NAME = dataset_name.upper()
-        if hasattr(self.cfg.TEST.UPDATE_INTERVALS, DATASET_NAME):
-            self.update_intervals = self.cfg.TEST.UPDATE_INTERVALS[DATASET_NAME]
-        else:
-            self.update_intervals = self.cfg.DATA.MAX_SAMPLE_INTERVAL
+        self.update_intervals = self.cfg.DATA.MAX_SAMPLE_INTERVAL
         print("Update interval is: ", self.update_intervals)
 
     def initialize(self, image, info: dict):
@@ -83,11 +79,10 @@ class MixFormer(BaseTracker):
         self.state = clip_box(self.map_box_back(pred_box, resize_factor), H, W, margin=10)
 
         # update template
-        for idx, update_i in enumerate(self.update_intervals):
-            if self.frame_id % update_i == 0:
-                z_patch_arr, _, z_amask_arr = sample_target(image, self.state, self.params.template_factor,
-                                                            output_sz=self.params.template_size)  # (x1, y1, w, h)
-                self.online_template = self.preprocessor.process(z_patch_arr)
+        if self.frame_id % self.update_intervals == 0:
+            z_patch_arr, _, z_amask_arr = sample_target(image, self.state, self.params.template_factor,
+                                                        output_sz=self.params.template_size)  # (x1, y1, w, h)
+            self.online_template = self.preprocessor.process(z_patch_arr)
 
 
         # for debug
